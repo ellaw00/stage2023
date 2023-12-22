@@ -1,31 +1,15 @@
 const int pinBleu = 9;
 const int pinRouge = 10;
 const int pinVert = 11;
-int y = analogRead(A0);
+int y = 0;
 float displayY = 0 ;
+
+void fadeIn();
+void fadeOut();
 
 void setup() {
   // Pas besoin de configuration particulière dans le setup
   Serial.begin(9600);
-}
-
-void fadeIn() {
-
-  for (int valeur = 0; valeur <= 255; valeur++) {
-    analogWrite(pinBleu, valeur);
-    analogWrite(pinRouge, 255 - valeur);
-    analogWrite(pinVert, valeur);
-    delay(10); // ajustez la vitesse du fondu selon vos préférences
-  }
-}
-
-void fadeOut() {
-  for (int valeur = 255; valeur >= 0; valeur--) {
-    analogWrite(pinBleu, valeur);
-    analogWrite(pinRouge, 255 - valeur);
-    analogWrite(pinVert, valeur);
-    delay(10); // ajustez la vitesse du fondu selon vos préférences
-  }
 }
 
 void loop() {
@@ -48,4 +32,23 @@ void loop() {
   delay(1000); // Attendre un moment à l'intensité minimale
   }
   Serial.println(displayY);
+}
+
+void fadeIn() {
+
+  for (int valeur = 0; valeur <= 255; valeur++) {
+    analogWrite(pinBleu, valeur);
+    analogWrite(pinRouge, 255 - valeur);
+    analogWrite(pinVert, valeur);
+    delay(10); // ajustez la vitesse du fondu selon vos préférences
+  }
+}
+
+void fadeOut() {
+  for (int valeur = 255; valeur >= 0; valeur--) {
+    analogWrite(pinBleu, valeur);
+    analogWrite(pinRouge, 255 - valeur);
+    analogWrite(pinVert, valeur);
+    delay(10); // ajustez la vitesse du fondu selon vos préférences
+  }
 }
